@@ -1,0 +1,55 @@
+#include <stdio.h> 
+#include <stdlib.h>
+void sort(int *nums,int m)
+{
+	for(int i=0;i<m;i++)
+	{
+		for(int j=i;j<m;j++)
+		{
+			if(nums[i]>nums[j])
+			{
+				int tmp=nums[i];
+				nums[i]=nums[j];
+				nums[j]=tmp;
+			}
+		}
+	}	
+}
+void merge(int* nums1, int m, int* nums2, int n) 
+{
+   for(int i=0;i<n;i++) 
+   {
+   	nums1[m+i]=nums2[i];
+   }
+   sort(nums1,m+n);
+}
+
+
+int main()
+{
+	int *nums1;
+	int *nums2;
+	int m,n;
+	printf("input m and n\n");
+	scanf("%d%d",&m,&n);
+	nums1=(int *)malloc(sizeof(int)*(m+n));
+	nums2=(int *)malloc(sizeof(int)*n);
+	for(int i=0;i<m;i++)
+	{
+		printf("input the number in nums1\n");
+		scanf("%d",&nums1[i]);
+	}
+		for(int i=0;i<n;i++)
+	{
+		printf("input the number in nums2\n");
+		scanf("%d",&nums2[i]);
+	}
+	sort(nums1,m);
+	sort(nums2,n);
+	merge(nums1,m,nums2,n);
+	for(int i=0;i<n+m;i++)
+	{
+		printf("%d ",nums1[i]);
+	}
+	return 0;
+}
